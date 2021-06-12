@@ -11,5 +11,41 @@
 
   <artifactId>querydsl-cookbook-competitors</artifactId>
 
+  <build>
+    <plugins>
+
+
+
+      <plugin>
+        <groupId>com.querydsl</groupId>
+        <artifactId>querydsl-maven-plugin</artifactId>
+        <version>${querydsl.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>export</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <jdbcDriver>org.h2.Driver</jdbcDriver>
+          <jdbcUrl>jdbc:h2:${project.basedir}/target/demo_db</jdbcUrl>
+          <packageName>com.michelebergia.querydslcookbookcompetitors</packageName>
+          <namePrefix>SQl</namePrefix>
+          <targetFolder>${project.basedir}/target/generated-sources/java</targetFolder>
+          <sourceFolder/>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
+
 
 </project>
