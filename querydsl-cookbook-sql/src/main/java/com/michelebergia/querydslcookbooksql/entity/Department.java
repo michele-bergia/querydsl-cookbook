@@ -1,4 +1,4 @@
-package com.michelebergia.querydslcookbookcompetitors.entity;
+package com.michelebergia.querydslcookbooksql.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
