@@ -23,14 +23,16 @@ public class QuerydslCookbookAdvanceApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        queryService.customTemplatesAndOperatorExample();
+        queryService.customTemplatesAndOperatorExample();
 
-//        queryServiceWithBean.exampleSubQuery();
-//        queryServiceWithBean.exampleSubQueryAndAliases();
-//        queryServiceWithBean.exampleCaseWhen();
+        queryServiceWithBean.exampleSubQuery();
+        queryServiceWithBean.exampleSubQueryAndAliases();
+        queryServiceWithBean.exampleCaseWhen();
 
         queryService.exampleQueryOtherSchemaMySQL();
         queryService.exampleQueryOtherSchemaVendorsFirstApproach();
+
+        queryService.exampleProjections();
 
     }
 }

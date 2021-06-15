@@ -4,7 +4,6 @@ import com.michelebergia.querydslcookbookcompetitors.entity.Employee;
 import com.michelebergia.querydslcookbookcompetitors.entity.QEmployee;
 import com.michelebergia.querydslcookbookcompetitors.repository.EmployeeRepository;
 import com.querydsl.jpa.impl.JPAQuery;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -13,7 +12,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -27,23 +25,23 @@ public class QueryService {
 
 
     public void simpleSelectAll() {
-        //region QueryDSL
-        long startTime = System.currentTimeMillis();
-
-        final JPAQuery<Employee> employeeJPAQuery = new JPAQuery<>(entityManager);
-        List<Employee> employeesQueryDSL = employeeJPAQuery.from(QEmployee.employee).fetch();
-
-        log.info("QueryDSL - 1: {}", System.currentTimeMillis() - startTime);
-        printData(employeesQueryDSL);
-        //endregion
-
         //region JPQL
-        startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
 
         List<Employee> employeeJPQL = entityManager.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
 
         log.info("JPQL: {}", System.currentTimeMillis() - startTime);
         printData(employeeJPQL);
+        //endregion
+
+        //region QueryDSL
+        startTime = System.currentTimeMillis();
+
+        final JPAQuery<Employee> employeeJPAQuery = new JPAQuery<>(entityManager);
+        List<Employee> employeesQueryDSL = employeeJPAQuery.from(QEmployee.employee).fetch();
+
+        log.info("QueryDSL: {}", System.currentTimeMillis() - startTime);
+        printData(employeesQueryDSL);
         //endregion
 
         //region Spring Data
@@ -72,10 +70,18 @@ public class QueryService {
     }
 
     public void simpleOrderingFirstNameWhereSalaryIsHigherOrEqualsThen50k() {
+        //region JPQL
+        long startTime = System.currentTimeMillis();
 
+        List<Employee> employeeJPQL = entityManager
+            .createQuery("SELECT e FROM Employee e WHERE e.salary > 50000 ORDER BY e.firstName", Employee.class).getResultList();
+
+        log.info("JPQL: {}", System.currentTimeMillis() - startTime);
+        printData(employeeJPQL);
+        //endregion
 
         //region QueryDSL
-        long startTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
 
         final JPAQuery<Employee> employeeJPAQuery = new JPAQuery<>(entityManager);
         QEmployee qEmployee = QEmployee.employee;
@@ -85,18 +91,8 @@ public class QueryService {
             .orderBy(qEmployee.firstName.asc())
             .fetch();
 
-        log.info("QueryDSL - 1: {}", System.currentTimeMillis() - startTime);
+        log.info("QueryDSL: {}", System.currentTimeMillis() - startTime);
         printData(employeesQueryDSL1);
-        //endregion
-
-        //region JPQL
-        startTime = System.currentTimeMillis();
-
-        List<Employee> employeeJPQL = entityManager
-            .createQuery("SELECT e FROM Employee e WHERE e.salary > 50000 ORDER BY e.firstName", Employee.class).getResultList();
-
-        log.info("JPQL: {}", System.currentTimeMillis() - startTime);
-        printData(employeeJPQL);
         //endregion
 
         //region Spring Data

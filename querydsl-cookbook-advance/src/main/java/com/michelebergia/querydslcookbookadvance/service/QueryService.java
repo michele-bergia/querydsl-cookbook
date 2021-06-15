@@ -5,15 +5,20 @@ import static com.michelebergia.querydslcookbookadvance.config.CustomMySQLTempla
 import com.michelebergia.querydslcookbookadvance.SQLCity;
 import com.michelebergia.querydslcookbookadvance.SQLEmployee;
 import com.michelebergia.querydslcookbookadvance.entity.Employee;
+import com.michelebergia.querydslcookbookadvance.entity.QEmployee;
 import com.michelebergia.querydslcookbookadvance.helper.custom.CustomTable;
+import com.michelebergia.querydslcookbookadvance.projection.EmployeeDTO;
+import com.michelebergia.querydslcookbookadvance.projection.QEmployeeDTO;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.sql.Configuration;
 import com.querydsl.sql.MySQLTemplates;
 import com.querydsl.sql.SQLQuery;
 import com.querydsl.sql.SQLQueryFactory;
 import com.querydsl.sql.SQLTemplates;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +29,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class QueryService {
 
-    //region SQLQueryFactory as Bean
-    private final SQLQueryFactory sqlQueryFactory;
-    //endregion
+    private final EntityManager entityManager;
 
     private final DataSource dataSource;
 
@@ -129,6 +132,24 @@ public class QueryService {
             .from(sqlEmployee);
         List<Integer> salaries = salaryQuery.fetch();
         salaries.forEach(salary -> log.info(salary.toString()));
+        //endregion
+    }
+
+    public void exampleProjections() {
+        //region EXAMPLES
+        final QEmployee qEmployee = QEmployee.employee;
+
+        log.info("-------------------------------");
+        log.info("EXAMPLE - 1 -------------------");
+        log.info("-------------------------------");
+
+        final List<EmployeeDTO> employeesDTO = new JPAQuery<>(entityManager).
+            select(Projections.fields(EmployeeDTO.class, qEmployee.firstName, qEmployee.lastName))
+            .from(qEmployee)
+            .fetch();
+
+        employeesDTO.forEach(employeeDTO -> log.info(employeeDTO.toString()));
+
         //endregion
     }
 

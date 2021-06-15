@@ -1,6 +1,6 @@
 package com.michelebergia.querydslcookbookjpa;
 
-import com.michelebergia.querydslcookbooksql.service.QueryService;
+import com.michelebergia.querydslcookbookjpa.service.QueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -22,5 +22,9 @@ public class QuerydslCookbookJpaApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         queryService.examples();
+
+        queryService.examplePersist();
+        queryService.exampleUpdate();
+        queryService.exampleDelete();
     }
 }
