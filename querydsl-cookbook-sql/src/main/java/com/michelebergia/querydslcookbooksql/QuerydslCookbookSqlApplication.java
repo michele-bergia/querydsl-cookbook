@@ -21,7 +21,7 @@ public class QuerydslCookbookSqlApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        queryService.examples();
+        queryService.examples();
 
         queryService.examplePersist();
         queryService.exampleUpdate();

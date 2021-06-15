@@ -8,7 +8,6 @@ import com.michelebergia.querydslcookbookadvance.entity.Employee;
 import com.michelebergia.querydslcookbookadvance.entity.QEmployee;
 import com.michelebergia.querydslcookbookadvance.helper.custom.CustomTable;
 import com.michelebergia.querydslcookbookadvance.projection.EmployeeDTO;
-import com.michelebergia.querydslcookbookadvance.projection.QEmployeeDTO;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQuery;

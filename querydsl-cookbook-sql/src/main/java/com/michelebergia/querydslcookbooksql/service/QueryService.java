@@ -49,75 +49,7 @@ public class QueryService {
             .fetch();
 
         for (Tuple employee : employees) {
-            log.info("firstName " + employee.get(1, String.class)); //firstName, 0 index is ID
-            log.info("lastName " + employee.get(sqlEmployee.lastName));
-            log.info("salary " + employee.get(sqlEmployee.all()[0])); //department code. Order of values based on fields initialization
-        }
-        //endregion
-
-        //region EXAMPLE 2
-        log.info("-------------------------------");
-        log.info("EXAMPLE - 2 -------------------");
-        log.info("-------------------------------");
-
-        employees = sqlQueryFactory.select(sqlEmployee.all())
-            .from(sqlEmployee)
-            .where(sqlEmployee.firstName.contains("a"))
-            .fetch();
-
-        for (Tuple employee : employees) {
-            log.info("firstName " + employee.get(1, String.class)); //firstName, 0 index is ID
-            log.info("lastName " + employee.get(sqlEmployee.lastName));
-            log.info("salary " + employee.get(sqlEmployee.all()[0])); //department code. Order of values based on fields initialization
-        }
-        //endregion
-
-        //region EXAMPLE 3
-        log.info("-------------------------------");
-        log.info("EXAMPLE - 3 -------------------");
-        log.info("-------------------------------");
-
-        employees = sqlQueryFactory.select(sqlEmployee.all())
-            .from(sqlEmployee)
-            .where(sqlEmployee.firstName.contains("a"))
-            .fetch();
-
-        for (Tuple employee : employees) {
-            log.info("firstName " + employee.get(1, String.class)); //firstName, 0 index is ID
-            log.info("lastName " + employee.get(sqlEmployee.lastName));
-            log.info("salary " + employee.get(sqlEmployee.all()[0])); //department code. Order of values based on fields initialization
-        }
-        //endregion
-
-        //region EXAMPLE 4
-        log.info("-------------------------------");
-        log.info("EXAMPLE - 4 -------------------");
-        log.info("-------------------------------");
-
-        employees = sqlQueryFactory.select(sqlEmployee.all())
-            .from(sqlEmployee)
-            .where(sqlEmployee.firstName.contains("a"))
-            .fetch();
-
-        for (Tuple employee : employees) {
-            log.info("firstName " + employee.get(1, String.class)); //firstName, 0 index is ID
-            log.info("lastName " + employee.get(sqlEmployee.lastName));
-            log.info("salary " + employee.get(sqlEmployee.all()[0])); //department code. Order of values based on fields initialization
-        }
-        //endregion
-
-        //region EXAMPLE 5
-        log.info("-------------------------------");
-        log.info("EXAMPLE - 5 -------------------");
-        log.info("-------------------------------");
-
-        employees = sqlQueryFactory.select(sqlEmployee.all())
-            .from(sqlEmployee)
-            .where(sqlEmployee.firstName.contains("a"))
-            .fetch();
-
-        for (Tuple employee : employees) {
-            log.info("firstName " + employee.get(1, String.class)); //firstName, 0 index is ID
+            log.info("firstName " + employee.get(1, String.class)); //firstName, 0 index is department code
             log.info("lastName " + employee.get(sqlEmployee.lastName));
             log.info("salary " + employee.get(sqlEmployee.all()[0])); //department code. Order of values based on fields initialization
         }

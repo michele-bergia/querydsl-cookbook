@@ -23,7 +23,6 @@ public class QueryService {
 
     private final EntityManager entityManager;
 
-
     public void simpleSelectAll() {
         //region JPQL
         long startTime = System.currentTimeMillis();

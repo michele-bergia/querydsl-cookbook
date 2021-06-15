@@ -57,12 +57,6 @@ public class QueryService {
         );
         printData(employees);
 
-        log.info("-------------------------------");
-        log.info("EXAMPLE - 5 -------------------");
-        log.info("-------------------------------");
-
-        //...
-
     }
 
     private void printData(Iterable<Employee> employees) {

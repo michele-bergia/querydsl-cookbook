@@ -22,7 +22,7 @@ public class CustomMySQLTemplate extends MySQLTemplates {
      *
      * @param string The string to repeat.
      * @param number The number of times to repeat the string.
-     * @return The repeated string
+     * @return The MYSQL function for REPEAT
      */
     public static StringExpression repeat(Expression<String> string, Expression<Number> number) {
         return Expressions.stringOperation(REPEAT, string, number);
